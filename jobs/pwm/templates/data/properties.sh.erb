@@ -11,6 +11,10 @@ export JOB_FULL="$NAME/$JOB_INDEX"
 
 
 export JAVA_HOME=/var/vcap/packages/openjdk
-export  $CATALINA_HOME=/var/vcap/packages/tomcat
-export  $CATALINA_BASE=/var/vcap/packages/tomcat
-export $CATALINA_OPTS="-DXmx512M"
+export JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
+export CATALINA_HOME=/var/vcap/packages/tomcat/tomcat
+export CATALINA_BASE=/var/vcap/data/pwm/tomcat
+export CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC -Djava.util.logging.config.file=/var/vcap/jobs/pwm/tomcat/conf/logging.properties"
+
+#see http://www.pwm-project.org/pwm/public/reference/environment.jsp
+export PWM_APPLICATIONPATH='/var/vcap/store/pwm/pwm-data'

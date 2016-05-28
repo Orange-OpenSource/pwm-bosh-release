@@ -17,6 +17,33 @@ case $1 in
     # store pid in $PIDFILE
     echo $$ > $PIDFILE
 
+	# link pwm package war and log dirs in CATALINA_BASE 
+	mkdir -p /var/vcap/data/pwm/tomcat
+	mkdir -p /var/vcap/data/pwm/tomcat/webapps
+	mkdir -p /var/vcap/data/pwm/tomcat/logs
+	mkdir -p /var/vcap/data/pwm/tomcat/work
+        mkdir -p /var/vcap/data/pwm/tomcat/temp
+	ln -sf /var/vcap/jobs/pwm/tomcat/conf /var/vcap/data/pwm/tomcat/conf
+	
+	# unzip pwm.war to enable web.xml and conf override
+	mkdir -p /var/vcap/data/pwm/tomcat/webapps/ROOT
+	cd /var/vcap/data/pwm/tomcat/webapps/ROOT
+	rm -rf  /var/vcap/data/pwm/tomcat/webapps/ROOT/*
+	unzip /var/vcap/packages/pwm/pwm.war
+	
+	#override web.xml
+	#cp -f /var/vcap/jobs/pwm/pwm/web.xml /var/vcap/data/pwm/tomcat/webapps/ROOT/WEB-INF/web.xml
+	
+	#enable vcap access to tomcat base
+	chmod -R ugo+rwx /var/vcap/data/pwm/tomcat
+
+	#assume pwm-data is created and available
+	mkdir -p /var/vcap/store/pwm/pwm-data
+        cp -f /var/vcap/jobs/pwm/pwm/PwmConfiguration.xml /var/vcap/store/pwm/pwm-data/PwmConfiguration.xml
+	chmod -R ugo+rwx /var/vcap/store/pwm/pwm-data
+
+
+
     exec chpst -u vcap:vcap $CATALINA_HOME/bin/catalina.sh run \
          >>$LOG_DIR/$JOB_NAME.log 2>&1
 

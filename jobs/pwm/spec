@@ -10,4 +10,76 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
-properties: {}
+  
+  tomcat/conf/catalina.policy.erb: tomcat/conf/catalina.policy  
+  tomcat/conf/catalina.properties.erb: tomcat/conf/catalina.properties
+  tomcat/conf/context.xml.erb: tomcat/conf/context.xml
+  tomcat/conf/logging.properties.erb: tomcat/conf/logging.properties
+  tomcat/conf/server.xml.erb: tomcat/conf/server.xml
+  tomcat/conf/tomcat-users.xml.erb: tomcat/conf/tomcat-users.xml
+  tomcat/conf/tomcat-users.xsd.erb: tomcat/conf/tomcat-users.xsd
+  tomcat/conf/web.xml.erb: tomcat/conf/web.xml
+  
+  pwm/web.xml.erb: pwm/web.xml
+  pwm/PwmConfiguration.xml.erb: pwm/PwmConfiguration.xml  
+  
+properties:
+  pwm.securityKey:
+    description: configuration password for pwm
+
+  pwm.selfURL:
+    description: Pwm Site URL
+ 
+  pwm.forwardURL:
+    description: Login site
+    
+  pwm.ldap.serverUrls:
+    description: LDAP URLs
+  
+  pwm.ldap.proxy.username:
+    description: LDAP Proxy User
+
+  pwm.ldap.proxy.password:
+    description: LDAP Proxy Password
+
+ 
+  pwm.ldap.rootContexts:
+    description: LDAP Contextless Login Roots
+    
+  pwm.ldap.testuser.username:
+    description: xx
+  
+  
+  pwm.pwmAdmin.queryMatch:
+    description: xx
+ 
+  pwm.ldap.usernameSearchFilter:
+    description: Username Search Filter
+    
+  pwm.email.smtp.address:
+    description: SMTP Email Server Address
+  
+  
+  pwm.email.smtp.username:
+    description: SMTP Email Server Username
+ 
+  pwm.email.smtp.userpassword:
+    description: SMTP Email Server Password
+    
+  pwm.email.changePassword:
+    description: Change Password Email
+  
+  pwm.email.newUser:
+    description: New User Email
+ 
+  pwm.email.newUserToken:
+    description: New User Verification Email
+    
+  pwm.email.challenge.token:
+    description: Forgotten Password Verification Email
+  
+  pwm.recovery.searchFilter:
+    description: Forgotten Password User Search Filter
+ 
+  pwm.display.newuser.agreement:
+    description: New User Agreement Message
